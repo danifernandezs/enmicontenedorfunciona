@@ -1,8 +1,7 @@
 # Site
 name: "En Mi Contenedor Funciona"
 title: "En Mi Contenedor Funciona"
-# description: "Descripción para el blog."
-description: ""
+description: "Notas y guías técnicas sobre OpenShift, Kubernetes y cloud-native. Operaciones de día 2, troubleshooting y buenas prácticas."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 baseurl: /
