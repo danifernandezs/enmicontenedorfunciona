@@ -129,7 +129,7 @@ De esta forma estamos listos para `forzar la recreación del PVC` de Elasticsear
 Así conseguiremos que OpenShift solicite un nuevo PVC, en este caso con el nuevo tamaño configurado.<br>Luego deberemos esperar a que el `clúster de Elasticsearch` se recupere, replique los datos y vuelva a estar en estado sano ("green").
 
 Escalamos a 0 uno de los deployments, por ejemplo:
-````bash
+```bash
 $ oc get deployments -l component=elasticsearch -n openshift-logging
 
 NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
