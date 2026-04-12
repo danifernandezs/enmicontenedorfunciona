@@ -151,7 +151,7 @@ ga('send', 'pageview');
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-6 text-center text-lg-left">
-                Copyright © {{ site.time | date: "%Y" }} {{ site.name }} 
+                Copyright © <span id="copyright-year">{{ site.time | date: "%Y" }}</span> {{ site.name }} 
             </div>
             <div class="col-md-6 col-sm-6 text-center text-lg-right">    
                 <a target="_blank" href="https://www.wowthemes.net/mediumish-free-jekyll-template/">Mediumish Jekyll Theme</a> by <a target="_blank" href="https://www.wowthemes.net/">WowThemes.net</a>
@@ -162,10 +162,22 @@ ga('send', 'pageview');
 <!-- End Footer
 ================================================== -->
 
-</div> <!-- /.site-content -->
+    </div> <!-- /.site-content -->
 
 <!-- Scripts
 ================================================== -->
+<script>
+(function(){
+  var year = new Date().getFullYear();
+  if (year < 2022) {
+    year = {{ site.time | date: "%Y" }};
+  }
+  var el = document.getElementById("copyright-year");
+  if (el) {
+    el.textContent = year;
+  }
+})();
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 
