@@ -315,8 +315,8 @@ jaeger-6dd96f99d4-bl5jz                0/2     Terminating   0          19m
 kiali-64ff6dbc65-whhbq                 1/1     Running       0          19m
 prometheus-6588f6bb9f-7vz5s            3/3     Terminating   0          19m
 
-$ oc get scmp
-error: the server doesn't have a resource type "scmp"
+$ oc get smcp -n istio-system
+No resources found in istio-system namespace.
 ```
 
 ## Borramos Kiali
