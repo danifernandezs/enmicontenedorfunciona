@@ -276,6 +276,8 @@ Es necesario un reinicio completo de los pods del clúster ya que todas las Serv
 
 Este proceso llevará varios minutos. En el clúster de prueba para este post, formado por 3 nodos en el control plane y 3 nodos de cómputo, sin cargas de trabajo reales, el proceso de reinicio de todos los pods llevó 14 minutos.
 
+> **Aviso:** Este comando elimina todos los pods de todos los namespaces del clúster. Asegúrate de disponer de una ventana de intervención y verificar el impacto en las cargas de trabajo.
+
 ```bash
 $ for I in $(oc get ns -o jsonpath='{range .items[*]} {.metadata.name}{"\n"} {end}'); \
       do oc delete pods --all -n $I; \
