@@ -11,7 +11,7 @@ permalink: "/archive.html"
         <h2>Todos los posts</h2>
     </div>
     <div class="row listrecent">
-        {% for post in site.posts | sort: 'last_updated' %}
+        {% for post in site.posts %}
             {% include postbox.html %}
         {% endfor %}
     </div>
