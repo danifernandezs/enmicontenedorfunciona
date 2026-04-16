@@ -163,9 +163,10 @@ oc edit apiserver cluster
 
 Quedando de una forma similar a:
 
-```bash
+```yaml
 apiVersion: config.openshift.io/v1
 kind: APIServer
+metadata:
   name: cluster
 spec:
   audit:
@@ -233,9 +234,10 @@ Es perfectamente posible desactivar el encriptado, al igual que cuando lo activa
 
 Para desactivarlo, es tan sencillo como indicar que el perfil de encriptado será `identity`.
 
-```bash
+```yaml
 apiVersion: config.openshift.io/v1
 kind: APIServer
+metadata:
   name: cluster
 spec:
   audit:
