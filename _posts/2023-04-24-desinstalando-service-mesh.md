@@ -8,7 +8,7 @@ featured: false
 hidden: false
 ---
 
-¿Cómo? ¿Desinstalar un operador y retirar todos los recursos creados por el mismo?. Además, ¿el mismísimo operador de Service Mesh?, pero si está de moda usar Istio. <br>
+¿Cómo? ¿Desinstalar un operador y retirar todos los recursos creados por el mismo? Además, ¿el mismísimo operador de Service Mesh? Pero si está de moda usar Istio.<br>
 Existen situaciones en las que es necesario o deseable retirar el operador de Service Mesh, por ejemplo, si se ha probado y no se ajusta a las necesidades que se desean cubrir o si no es el producto adecuado para resolver el problema original que se intentó abordar.<br>
 En el caso que se plantea, se decide retirar OpenShift Service Mesh para poder desplegar otra Mesh de otro proveedor, ya que no es compatible tener Istio desplegado en el mismo clúster con la nueva Mesh.
 
@@ -280,7 +280,7 @@ customresourcedefinition.apiextensions.k8s.io "workloadgroups.networking.istio.i
 
 ## Comprobamos si existe Service Mesh Member Roll
 
-Comprobamos si existe el recuros de Service Mesh Member Roll desplegado. Si es así lo eliminaremos también.
+Comprobamos si existe el recurso de Service Mesh Member Roll desplegado. Si es así lo eliminaremos también.
 
 ```bash
 $ oc get smmr -A
@@ -302,7 +302,7 @@ $ oc delete smcp basic -n istio-system
 servicemeshcontrolplane.maistra.io/basic deleted
 ```
 
-Veremos como los pods comenzarán a ser eliminados.
+Veremos cómo los pods comenzarán a ser eliminados.
 
 ```bash
 $ oc get po -n istio-system
@@ -339,7 +339,7 @@ $ oc get kiali -n istio-system
 error: the server doesn't have a resource type "kiali"
 ```
 
-Veremos como los pods comenzarán a ser eliminados.
+Veremos cómo los pods comenzarán a ser eliminados.
 
 ```bash
 $ oc get po -n istio-system
