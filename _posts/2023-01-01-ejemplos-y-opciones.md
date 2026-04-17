@@ -8,9 +8,9 @@ featured: false
 hidden: true
 ---
 
-## Referencia de imágenes externas como imágen para el post
+## Referencia de imágenes externas como imagen para el post
 
-A la hora de definir la imagen a mostrar por el post en la tarjeta correspondiente, también se puede hacer referencia a una imágen externa a este propio repositorio.
+A la hora de definir la imagen a mostrar por el post en la tarjeta correspondiente, también se puede hacer referencia a una imagen externa a este propio repositorio.
 
 ### Ejemplo
 
@@ -48,7 +48,7 @@ Además de negrita y cursiva, también se pueden emplear otros formatos especial
 
 + ~~tachado~~
 + ==resaltado==
-+ \*escape de carateres\*
++ \*escape de caracteres\*
 
 
 ## Escribiendo bloques de código
@@ -124,7 +124,7 @@ printf("Hello World");
 
 ## Full HTML
 
-En Markdown se puede escribir HTML directamente y funcionará como normalmente lo hace HTML. ¡Sin limites! 
+En Markdown se puede escribir HTML directamente y funcionará como normalmente lo hace HTML. ¡Sin límites! 
 
 Aquí un ejemplo estándar para incluir un video de YouTube:
 <p><iframe style="width:100%;" height="315" src="https://www.youtube.com/embed/Cniqsc9QfDo?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></p>
@@ -137,7 +137,7 @@ Es importante etiquetar adecuadamente los spoilers para que los usuarios puedan 
 
 ### Ejemplo de uso
 
-En este párrfo, a partir de este momento <span class="spoiler">el contenido está oculto tras un spoiler</span> y para revelar su contenido deberás hacer click sobre el texto oculto.
+En este párrafo, a partir de este momento <span class="spoiler">el contenido está oculto tras un spoiler</span> y para revelar su contenido deberás hacer click sobre el texto oculto.
 
 ### ¿Cómo emplear spoilers?
 
