@@ -25,7 +25,7 @@ Los datos que se encriptan una vez activado son:
 
 ## Importante
 
-- Al activar el encriptado de *etcd*, se crean las claves de encriptación, estas claves son necesarias para restaurar un backup de etcd.
+- Al activar el encriptado de *etcd*, se crean las claves de encriptación; estas claves son necesarias para restaurar un backup de etcd.
 - Al realizar un backup de _etcd_, se crea un fichero *static_kuberesources_TIME.tar.gz* que contiene las claves de encriptado, por seguridad, recuerda almacenar este fichero separado del snapshot de _etcd_ que se haya realizado.
 - Únicamente se encriptan los valores de los datos almacenados y no las claves, en el par key-value de *etcd*.
 - Los nombres de los objetos no se encriptan.
@@ -99,7 +99,7 @@ spec:
 
 # Probemos
 
-Vamos a empezar comprobando como sin el encriptado podemos recuperar los datos almacenados en *etcd* y luego revisamos el encriptado y que los nuevos recursos creados serán almacenados ya directamente encriptados.
+Vamos a empezar comprobando cómo sin el encriptado podemos recuperar los datos almacenados en *etcd* y luego revisamos el encriptado y que los nuevos recursos creados serán almacenados ya directamente encriptados.
 
 Para estas pruebas, crearemos secretos de *kubernetes* y los consultaremos directamente desde los *pods* donde tenemos en ejecución *etcd*.
 
@@ -246,7 +246,7 @@ spec:
     type: identity
 ```
 
-Realizando las comprobaciones de estado, podremos observar que el desencriptado está en proceso hasta que una vez concluído se indicará que todo está desencriptado.
+Realizando las comprobaciones de estado, podremos observar que el desencriptado está en proceso hasta que una vez concluido se indicará que todo está desencriptado.
 
 ```bash
 oc get openshiftapiserver -o=jsonpath='{range .items[0].status.conditions[?(@.type=="Encrypted")]}{.reason}{"\n"}{.message}{"\n"}'
@@ -268,7 +268,7 @@ DecryptionCompleted
 Encryption mode set to identity and everything is decrypted
 ```
 
-Con todo desencriptado, en nuetras consultas a *etcd* volveremos a recuperar los datos en plano.
+Con todo desencriptado, en nuestras consultas a *etcd* volveremos a recuperar los datos en plano.
 
 ```bash
 [root@ip-10-0-154-175 /]# etcdctl get /kubernetes.io/secrets/default/secret1
@@ -331,7 +331,7 @@ kube-apiserver                             4.13.1    True        True          F
 ...
 ```
 
-Consiguiendo que los valores que ya estaban encriptados serán reencriptados bajo el nuevo perfil.
+Consiguiendo que los valores que ya estaban encriptados sean reencriptados bajo el nuevo perfil.
 
 # Referencias
 
