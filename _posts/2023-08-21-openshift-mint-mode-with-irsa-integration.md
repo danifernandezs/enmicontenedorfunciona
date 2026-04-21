@@ -9,13 +9,13 @@ hidden: false
 toc: false
 ---
 
-Para permitir que las aplicaciones desplegadas accedan a los servicios de AWS, se puede asociar un rol de IAM con una `service account` de Kubernetes usando IRSA (AWS IAM Roles for Service Accounts). <br><br>De esta forma, la `service account` puede otorgar permisos de acceso a servicos de AWS a los contenedores en cualquier pod vinculado con la `service account`.
+Para permitir que las aplicaciones desplegadas accedan a los servicios de AWS, se puede asociar un rol de IAM con una `service account` de Kubernetes usando IRSA (AWS IAM Roles for Service Accounts). <br><br>De esta forma, la `service account` puede otorgar permisos de acceso a servicios de AWS a los contenedores en cualquier pod vinculado con la `service account`.
 
-Hay que recordar las prácticas de seguridad recomendadas por las propia AWS.
+Hay que recordar las prácticas de seguridad recomendadas por la propia AWS.
 
 - Principio de permisos mínimos: los permisos de IAM se limitan a una service account y solo los pods que usan esa service account tienen acceso a estos permisos de IAM. Esto permite el uso de políticas de IAM detalladas que dan el acceso mínimo a los recursos de AWS.
 - Aislamiento de credenciales: un contenedor solo puede obtener credenciales para el rol de IAM que esté asociado con la service account a la que está vinculado. Un contenedor nunca tiene acceso a las credenciales destinadas a otro contenedor.
-- Auditoría: el registro de eventos generados al acceder a los recursos de AWS se pueden auditar de forma individual a la service account y su rol asociado.
+- Auditoría: el registro de eventos generados al acceder a los recursos de AWS se puede auditar de forma individual a la service account y su rol asociado.
 
 # Determinando el modo del Cloud Credential Operator
 
@@ -25,7 +25,7 @@ Podemos comprobar el modo en el cual está configurado el Cloud Credential Opera
 oc get cloudcredentials cluster -o=jsonpath={.spec.credentialsMode}
 ```
 
-En la salida, podemos recibir las siguiente opciones.
+En la salida, podemos recibir las siguientes opciones.
 
 - '': El Cloud Credentials Operator está en modo por defecto.
 - Mint: El Cloud Credentials Operator está en modo Mint.
@@ -41,7 +41,7 @@ $ oc get cloudcredentials cluster -o=jsonpath={.spec}
 {"credentialsMode":"","logLevel":"Normal","operatorLogLevel":"Normal"}
 ```
 
-Lo cual indica que el Cloud Credentials Operator está en modo por defecto, por lo que deberemos comprobar el secreto en el namespace de kube-system para deferminar el estado del Cloud Credentials Operator.
+Lo cual indica que el Cloud Credentials Operator está en modo por defecto, por lo que deberemos comprobar el secreto en el namespace de kube-system para determinar el estado del Cloud Credentials Operator.
 
 ```bash
 $ oc get secret aws-creds -n kube-system -o=jsonpath={.metadata.annotations}
@@ -93,7 +93,7 @@ $ tar xf ccoctl-linux-4.12.25.tar.gz
 
 # Creando los recursos de AWS con el Cloud Credential Operator binary
 
-Para la creación del identity provider debemos indicar la clave pública que se quiere emplear en el IDP y que la parte privada será indicada y desplegada en el clúster de OpenShift.
+Para la creación del Identity Provider debemos indicar la clave pública que se quiere emplear en el IDP, mientras que la parte privada será indicada y desplegada en el clúster de OpenShift.
 
 En nuestro caso, como el clúster ya está desplegado y configurado, ya disponemos de la clave privada configurada en el ServiceAccount Token signer, por lo tanto, lo primero que realizaremos será obtener la parte pública para luego poder crear el IDP.
 
@@ -148,7 +148,7 @@ Podemos comprobar en nuestra cuenta de AWS los recursos creados, el bucket S3 y 
 ![S3 Bucket for OIDC]({{ site.url }}{{ site.baseurl }}/assets/images/posts/2023-08-21/s3bucket.png)<br>
 ![AWS Identity Provider]({{ site.url }}{{ site.baseurl }}/assets/images/posts/2023-08-21/identityprovider.png)
 
-Ahora deberemos reconfigurar el CR de autenticación del clúster de OpenShift con el ARN del nuevo IDP que acabamos de crear. <br> El propio binario `ccoctl` ha creado el yaml que podemos aplicar con la modificación del ARN a reconfigurar.
+Ahora deberemos reconfigurar el CR de autenticación del clúster de OpenShift con el ARN del nuevo IDP que acabamos de crear. <br> El propio binario `ccoctl` ha creado el YAML que podemos aplicar con la modificación del ARN a reconfigurar.
 
 Podemos verificar el yaml generado y posteriormente aplicarlo en el clúster.
 
@@ -166,7 +166,7 @@ $ oc apply -f enabling_irsa/manifests/cluster-authentication-02-config.yaml
 authentication.config.openshift.io/cluster configured
 ```
 
-Debemos esperar a que todos los pods de `kube-apiserver` sean actualizados con la nueva configuración relacionada con el Identity Provider.
+Debemos esperar a que todos los pods de `kube-apiserver` se actualicen con la nueva configuración relacionada con el Identity Provider.
 
 ```bash
 $ oc get pods -n openshift-kube-apiserver | grep kube-apiserver
@@ -370,7 +370,7 @@ command terminated with exit code 253
 
 ## Rol de IAM y asignación
 
-En este punto, ya todo depende de referenciar el rol de IAM que queramos emplear en el despliegue en nuestro clúster. <br> Suponemos la situación más típica, es decir, que el equipo de seguridad (o cualquier otro) será quien crea, mantiene y nos facilita el rol de IAM que deberemos utilizar.
+En este punto, todo depende de referenciar el rol de IAM que queramos emplear en el despliegue en nuestro clúster. <br> Suponemos la situación más típica, es decir, que el equipo de seguridad (o cualquier otro) será quien crea, mantiene y nos facilita el rol de IAM que deberemos utilizar.
 
 Lo más importante en el rol de IAM es la política de confianza, en la cual haremos referencia al OIDC que hemos creado en la cuenta de AWS.
 
@@ -447,7 +447,7 @@ metadata:
     eks.amazonaws.com/token-expiration: "86400"
 ```
 
-Momento en el cual reajustamos el despliegue para referenciar a la Service Account.
+En este momento reajustamos el despliegue para referenciar a la Service Account.
 
 ```yaml
 ---
@@ -516,7 +516,7 @@ volumes:
 ...
 ```
 
-Comprobamos nuevamente los permisos, en este caso, nuestro pod ya es capaz de leer los buckets S3 y recibe un identity por parte de AWS para sus peticiones.
+Comprobamos nuevamente los permisos, en este caso, nuestro pod ya es capaz de leer los buckets S3 y recibe una identidad por parte de AWS para sus peticiones.
 
 ```bash
 $ oc get po
