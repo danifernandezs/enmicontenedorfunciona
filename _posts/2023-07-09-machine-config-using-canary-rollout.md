@@ -9,7 +9,7 @@ hidden: false
 toc: false
 ---
 
-En algunos escenarios, puede que necesitemos tener un mejor control al aplicar configuraciones en los nodos de cómputo, por eso, podemos basarnos en la metodología de Canary Rollout del software y aplicarlo a los nodos de nuestros clústeres. <br><br>En aquellos escenarios en los que no podamos permitirnos probar configuraciones, esperar un reinicio y en el momento de comprobar la configuración, esta sea errónea, para situaciones como esta es donde nos podemos plantear esta metodología.
+En algunos escenarios, puede que necesitemos tener un mejor control al aplicar configuraciones en los nodos de cómputo, por eso, podemos basarnos en la metodología de Canary Rollout del software y aplicarlo a los nodos de nuestros clústeres.<br><br>En aquellos escenarios en los que no podamos permitirnos probar configuraciones, esperar un reinicio y que, en el momento de comprobar la configuración, esta sea errónea, para situaciones como esta es donde nos podemos plantear esta metodología.
 
 # Entorno de pruebas y pasos a alto nivel
 
@@ -317,7 +317,7 @@ worker-config-test   rendered-worker-config-test-6bcab86604a96434bc10ce9b575cbb7
 
 # Creamos los Machine Configs y aplicamos
 
-Ahora vamos a crear las configuraciones que queremos probar y que serán aplicadas al nodos de cómputo que hemos "movido" al nuevo Machine Config Pool.
+Ahora vamos a crear las configuraciones que queremos probar y que serán aplicadas a los nodos de cómputo que hemos "movido" al nuevo Machine Config Pool.
 
 Configuración para NTP
 ```yaml
