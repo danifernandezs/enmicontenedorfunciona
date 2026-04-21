@@ -42,7 +42,7 @@ Claramente nos estamos acercando al límite de uso de disco, por lo que debemos 
 
 ## Vamos a ello
 
-El resumen de los pasos que vamos a seguir son:
+El resumen de los pasos que vamos a seguir es:
 - Comprobar el estado del clúster de Elasticsearch
 - Listaremos los deployments de Elasticsearch
 - Comprobaremos los PVCs de Elasticsearch
@@ -126,7 +126,7 @@ spec:
 
 De esta forma estamos listos para `forzar la recreación del PVC` de Elasticsearch.<br> Para ello, escalaremos los deployments a 0, eliminando el PVC asociado a dicho deployment para luego volver a escalarlo a 1. <br>
 
-Así conseguiremos que OpenShift solicite un nuevo PVC, en este caso con el nuevo tamaño configurado.<br>Luego deberemos esperar a que el `clúster de Elasticsearch` se recupere, replique los datos y vuelva a estar en estado sano ("green").
+Así conseguiremos que OpenShift solicite un nuevo PVC, en este caso con el nuevo tamaño configurado.<br> Luego deberemos esperar a que el `clúster de Elasticsearch` se recupere, replique los datos y vuelva a estar en estado sano ("green").
 
 Escalamos a 0 uno de los deployments, por ejemplo:
 ```bash
@@ -460,7 +460,7 @@ pvc-020418bf-bc0c-4185-9e08-f11f2650d009   500Gi      RWO            Delete     
 pvc-b0664be0-efc3-4976-9059-e79598bd47bc   500Gi      RWO            Delete           Bound    openshift-logging/elasticsearch-elasticsearch-cdm-cppltvjo-1   gp3-csi                 5h49m
 ```
 
-Reescalamos el despliegue para que el volumen sea recreado, comprobamos la replicación de datos y el estado del clúster vuele a ser estable.
+Reescalamos el despliegue para que el volumen sea recreado, comprobamos la replicación de datos y el estado del clúster vuelva a ser estable.
 ```bash
 $ oc scale deployment elasticsearch-cdm-cppltvjo-2 -n openshift-logging --replicas=1
 
